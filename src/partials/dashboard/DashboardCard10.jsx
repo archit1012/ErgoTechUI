@@ -114,7 +114,7 @@ const EnergyChart = () => {
   };
 
   return (
-    <div className="flex flex-col col-span-full sm:col-span-6 bg-white dark:bg-slate-800 shadow-lg rounded-sm border border-slate-200 dark:border-slate-700 h-72">
+    <div className="flex flex-col col-span-full sm:col-span-6 bg-white dark:bg-slate-800 shadow-lg rounded-sm border border-slate-200 dark:border-slate-700 h-96">
       <header className="px-4 flex py-2 border-b border-slate-100 dar k:border-slate-700">
         <h2 className="font-semibold text-slate-800 dark:text-slate-100">
           Energy Generated
@@ -125,11 +125,13 @@ const EnergyChart = () => {
           className=" w-40 bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 hover:border-gray-500 px-4 py-2 rounded-lg shadow leading-tight focus:outline-none focus:shadow-outline"
         /> */}
       </header>
-      
-        <div className="wrapper flex-grow" style={{width:"100%" ,height:"100%"}}>
-          <Bar  data={chartConfig} options={options} />
-        </div>
-      
+
+      <div
+        className="wrapper flex-grow"
+        style={{ width: "100%", height: "100%" }}
+      >
+        <Bar data={chartConfig} options={options} />
+      </div>
     </div>
   );
 };

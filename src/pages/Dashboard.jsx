@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import Header from "../partials/Header";
-import DashboardCard04 from "../partials/dashboard/DashboardCard04";
-import DashboardCard12 from "../partials/dashboard/DashboardCard12";
+// import DashboardCard04 from "../partials/dashboard/DashboardCard04";
+// import DashboardCard12 from "../partials/dashboard/DashboardCard12";
 import DashboardCard10 from "../partials/dashboard/DashboardCard10";
 import DashboardChard1 from "../partials/dashboard/DashboardCard1";
-import DashboardMap from "../partials/dashboard/DashboardMap";
-import Dashboardcard05 from "../partials/dashboard/Dashoardcard05";
+import PieChartCard from "../partials/dashboard/PiechartCard";
+// import DashboardMap from "../partials/dashboard/DashboardMap";
+// import Dashboardcard05 from "../partials/dashboard/Dashoardcard05";
 
 function Dashboard() {
   const [selectedAsset, setSelectedAsset] = useState("");
@@ -66,7 +67,9 @@ function Dashboard() {
             <DashboardCard10 selectedAsset={selectedAsset} />
             <DashboardChard1 selectedAsset={selectedAsset} />
             {/* <DashboardMap selectedAsset={selectedAsset} /> */}
-            {/* <DashboardCard04 selectedAsset={selectedAsset} /> */}
+          </div>
+          <div className="w-1/2 m-auto mt-2">
+            <PieChartCard selectedAsset={selectedAsset} />
           </div>
         </main>
       </div>
