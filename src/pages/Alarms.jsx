@@ -130,6 +130,8 @@ const Alarms = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [tabelData, setTableData] = useState([]);
 
+  console.log(tabelData, "table ka data");
+
   const fetchPieChartData = async () => {
     try {
       const res = await fetch(
@@ -139,7 +141,7 @@ const Alarms = () => {
         console.log(res);
         const data = await res.json();
         console.log("first");
-        console.log(data);
+        console.log(data, "api se data");
         setTableData(data);
       } else {
         throw Error("Oops something went wrong!");
@@ -184,36 +186,36 @@ const Alarms = () => {
   };
 
   // Sample data and columns for the grid component
-  const data = [
-    {
-      assetId: "12345",
-      // customerDeviceName: "Device 1",
-      customerId: "Cust123",
-      deviceCategory: "Category A",
-      deviceLocation: "Location X",
-      deviceName: "Device A",
-      deviceId: "Dev001",
-      data: 100,
-      measurement: "m",
-      variableName: "Variable 1",
-      variableUnit: "Unit 1",
-      sensorTime: "2024-05-28 08:00:00",
-    },
-    {
-      assetId: "67890",
-      customerDeviceName: "Device 2",
-      customerId: "Cust456",
-      deviceCategory: "Category B",
-      deviceLocation: "Location Y",
-      deviceName: "Device B",
-      deviceId: "Dev002",
-      data: 200,
-      measurement: "cm",
-      variableName: "Variable 2",
-      variableUnit: "Unit 2",
-      sensorTime: "2024-05-28 09:00:00",
-    },
-  ];
+  // const data = [
+  //   {
+  //     assetId: "12345",
+  //     // customerDeviceName: "Device 1",
+  //     customerId: "Cust123",
+  //     deviceCategory: "Category A",
+  //     deviceLocation: "Location X",
+  //     deviceName: "Device A",
+  //     deviceId: "Dev001",
+  //     data: 100,
+  //     measurement: "m",
+  //     variableName: "Variable 1",
+  //     variableUnit: "Unit 1",
+  //     sensorTime: "2024-05-28 08:00:00",
+  //   },
+  //   {
+  //     assetId: "67890",
+  //     customerDeviceName: "Device 2",
+  //     customerId: "Cust456",
+  //     deviceCategory: "Category B",
+  //     deviceLocation: "Location Y",
+  //     deviceName: "Device B",
+  //     deviceId: "Dev002",
+  //     data: 200,
+  //     measurement: "cm",
+  //     variableName: "Variable 2",
+  //     variableUnit: "Unit 2",
+  //     sensorTime: "2024-05-28 09:00:00",
+  //   },
+  // ];
 
   const [selected, setSelected] = useState("");
   const handleSelectChange = (e) => {
@@ -451,7 +453,9 @@ const Alarms = () => {
             Alarm Data
           </h1>
           <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-4 mt-4  ">
-            <MonitoringGrid data={tabelData} columns={columns} />
+            {tabelData.length > 0 && (
+              <MonitoringGrid data={tabelData} columns={columns} />
+            )}
           </div>
         </div>
       </main>
