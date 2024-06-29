@@ -91,7 +91,7 @@ function Header({ sidebarOpen, setSidebarOpen }) {
             >
               Home
             </Link>
-            <Link
+            {/* <Link
               to="/monitoring"
               className={isActive("/monitoring") ? "active" : ""}
               style={
@@ -101,7 +101,7 @@ function Header({ sidebarOpen, setSidebarOpen }) {
               }
             >
               Monitoring
-            </Link>
+            </Link> */}
             <Link
               to="/alarms"
               className={isActive("/alarms") ? "active" : ""}
@@ -113,7 +113,7 @@ function Header({ sidebarOpen, setSidebarOpen }) {
             >
               Alarms
             </Link>
-            <Link
+            {/* <Link
               to="/analysis"
               className={isActive("/analysis") ? "active" : ""}
               style={
@@ -123,7 +123,7 @@ function Header({ sidebarOpen, setSidebarOpen }) {
               }
             >
               Analysis
-            </Link>
+            </Link> */}
           </div>
 
           <div className="flex items-center space-x-3">
