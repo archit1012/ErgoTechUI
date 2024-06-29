@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../partials/Header";
 // import DashboardCard04 from "../partials/dashboard/DashboardCard04";
 // import DashboardCard12 from "../partials/dashboard/DashboardCard12";
@@ -9,11 +9,33 @@ import PieChartCard from "../partials/dashboard/PiechartCard";
 // import Dashboardcard05 from "../partials/dashboard/Dashoardcard05";
 
 function Dashboard() {
-  const [selectedAsset, setSelectedAsset] = useState("");
+  const [pieChartData, setPieChartData] = useState({
+    labels: [],
+    datasets: [],
+  });
 
-  const handleAssetChange = (event) => {
-    setSelectedAsset(event.target.value);
+  const fetchPieChartData = async () => {
+    try {
+      const res = await fetch(
+        "https://run.mocky.io/v3/a134f99c-0b69-4739-b3ff-4ea8931e66aa"
+      );
+      if (res.ok) {
+        console.log(res);
+        const data = await res.json();
+        console.log("first");
+        console.log(data);
+        setPieChartData(data);
+      } else {
+        throw Error("Oops something went wrong!");
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
   };
+
+  useEffect(() => {
+    fetchPieChartData();
+  }, []);
 
   // State for theme mode
   const [darkMode, setDarkMode] = useState(false);
@@ -64,12 +86,12 @@ function Dashboard() {
             {/* Your Dashboard Cards */}
             {/* <Dashboardcard05 selectedAsset={selectedAsset} /> */}
             {/* <DashboardCard12 selectedAsset={selectedAsset} /> */}
-            <DashboardCard10 selectedAsset={selectedAsset} />
-            <DashboardChard1 selectedAsset={selectedAsset} />
+            <DashboardCard10 />
+            <DashboardChard1 />
             {/* <DashboardMap selectedAsset={selectedAsset} /> */}
           </div>
           <div className="w-1/2 m-auto mt-2">
-            <PieChartCard selectedAsset={selectedAsset} />
+            <PieChartCard pieChartData={pieChartData} />
           </div>
         </main>
       </div>

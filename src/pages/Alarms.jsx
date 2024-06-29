@@ -1,4 +1,4 @@
-import React, { useEffect,useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import Header from "../partials/Header"; // Adjust the import path as necessary
 import { useTable, useFilters } from "react-table";
 import { CSVLink } from "react-csv";
@@ -8,12 +8,10 @@ const MonitoringGrid = ({ data, columns }) => {
   const [sorting, setSorting] = useState({ key: "assetId", ascending: true });
   const [currentUsers, setCurrentUsers] = useState(data);
   const handleSort = (key) => {
-
     setSorting((prevSorting) => ({
       key,
       ascending: prevSorting.key === key ? !prevSorting.ascending : true,
     }));
-  
   };
   useEffect(() => {
     // Copy array to prevent data mutation
@@ -27,7 +25,7 @@ const MonitoringGrid = ({ data, columns }) => {
         return a[sorting.key] - b[sorting.key];
       }
     });
-   
+
     // Replace currentUsers with sorted currentUsers
     setCurrentUsers(
       sorting.ascending ? sortedCurrentUsers : sortedCurrentUsers.reverse()
@@ -58,78 +56,102 @@ const MonitoringGrid = ({ data, columns }) => {
 
   return (
     <>
-    <div className="flex items-center mb-4">
-      <input
-        value={filterInput}
-        onChange={handleFilterChange}
-        placeholder="Filter data"
-        className={`block appearance-none bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 hover:border-gray-500 px-2 py-1 rounded shadow leading-tight focus:outline-none focus:shadow-outline`}
-        style={{ marginRight: "15px", fontSize: "14px" }}
-      />
-      <CSVLink
-        data={data}
-        filename="data_export.csv"
-        className="text-sm btn-primary"
-        target="_blank"
-      >
-        Export CSV
-      </CSVLink>
-    </div>
-    <div className="overflow-x-auto">
-      <table
-        {...getTableProps()}
-        className="table-outline"
-        style={{ width: "100%", marginTop: "10px" }}
-      >
-        <thead>
-          {headerGroups.map((headerGroup) => (
-            <tr
-              {...headerGroup.getHeaderGroupProps()}
-              style={{ borderBottom: "1px solid #ddd" }}
-            >
-              {headerGroup.headers.map((column) => (
-                <th
-                  {...column.getHeaderProps()}
-                  style={{ padding: "10px", textAlign: "left" }}
-                  onClick={() => handleSort(column.id)}
-                >
-                  {column.render("Header")}
-
-                  {sorting.key === column.id
-                    ? sorting.ascending
-                      ? " 🔼"
-                      : " 🔽"
-                    : ""}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {rows.map((row) => {
-            prepareRow(row);
-            return (
+      <div className="flex items-center mb-4">
+        <input
+          value={filterInput}
+          onChange={handleFilterChange}
+          placeholder="Filter data"
+          className={`block appearance-none bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 hover:border-gray-500 px-2 py-1 rounded shadow leading-tight focus:outline-none focus:shadow-outline`}
+          style={{ marginRight: "15px", fontSize: "14px" }}
+        />
+        <CSVLink
+          data={data}
+          filename="data_export.csv"
+          className="text-sm btn-primary"
+          target="_blank"
+        >
+          Export CSV
+        </CSVLink>
+      </div>
+      <div className="overflow-x-auto">
+        <table
+          {...getTableProps()}
+          className="table-outline"
+          style={{ width: "100%", marginTop: "10px" }}
+        >
+          <thead>
+            {headerGroups.map((headerGroup) => (
               <tr
-                {...row.getRowProps()}
+                {...headerGroup.getHeaderGroupProps()}
                 style={{ borderBottom: "1px solid #ddd" }}
               >
-                {row.cells.map((cell) => (
-                  <td {...cell.getCellProps()} style={{ padding: "10px" }}>
-                    {cell.render("Cell")}
-                  </td>
+                {headerGroup.headers.map((column) => (
+                  <th
+                    {...column.getHeaderProps()}
+                    style={{ padding: "10px", textAlign: "left" }}
+                    onClick={() => handleSort(column.id)}
+                  >
+                    {column.render("Header")}
+
+                    {sorting.key === column.id
+                      ? sorting.ascending
+                        ? " 🔼"
+                        : " 🔽"
+                      : ""}
+                  </th>
                 ))}
               </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </div>
-  </>
+            ))}
+          </thead>
+          <tbody {...getTableBodyProps()}>
+            {rows.map((row) => {
+              prepareRow(row);
+              return (
+                <tr
+                  {...row.getRowProps()}
+                  style={{ borderBottom: "1px solid #ddd" }}
+                >
+                  {row.cells.map((cell) => (
+                    <td {...cell.getCellProps()} style={{ padding: "10px" }}>
+                      {cell.render("Cell")}
+                    </td>
+                  ))}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 };
 
 const Alarms = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [tabelData, setTableData] = useState([]);
+
+  const fetchPieChartData = async () => {
+    try {
+      const res = await fetch(
+        "https://run.mocky.io/v3/d1b26ab3-c53d-470f-850d-46612159ef31"
+      );
+      if (res.ok) {
+        console.log(res);
+        const data = await res.json();
+        console.log("first");
+        console.log(data);
+        setTableData(data);
+      } else {
+        throw Error("Oops something went wrong!");
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchPieChartData();
+  }, []);
 
   const [formData, setFormData] = useState({
     assets: "",
@@ -165,7 +187,7 @@ const Alarms = () => {
   const data = [
     {
       assetId: "12345",
-      customerDeviceName: "Device 1",
+      // customerDeviceName: "Device 1",
       customerId: "Cust123",
       deviceCategory: "Category A",
       deviceLocation: "Location X",
@@ -192,23 +214,37 @@ const Alarms = () => {
       sensorTime: "2024-05-28 09:00:00",
     },
   ];
+
   const [selected, setSelected] = useState("");
   const handleSelectChange = (e) => {
     setSelected(e.target.value);
   };
+  // const columns = [
+  //   { Header: "Asset Id", accessor: "assetId" },
+  //   { Header: "Customer Device Name", accessor: "customerDeviceName" },
+  //   { Header: "Customer Id", accessor: "customerId" },
+  //   { Header: "Device Category", accessor: "deviceCategory" },
+  //   { Header: "Device Location", accessor: "deviceLocation" },
+  //   { Header: "Device Name", accessor: "deviceName" },
+  //   { Header: "Device Id", accessor: "deviceId" },
+  //   { Header: "Data", accessor: "data" },
+  //   { Header: "Measurement", accessor: "measurement" },
+  //   { Header: "Variable Name", accessor: "variableName" },
+  //   { Header: "Variable Unit", accessor: "variableUnit" },
+  //   { Header: "Sensor Time", accessor: "sensorTime" },
+  // ];
+
   const columns = [
-    { Header: "Asset Id", accessor: "assetId" },
-    { Header: "Customer Device Name", accessor: "customerDeviceName" },
-    { Header: "Customer Id", accessor: "customerId" },
-    { Header: "Device Category", accessor: "deviceCategory" },
-    { Header: "Device Location", accessor: "deviceLocation" },
-    { Header: "Device Name", accessor: "deviceName" },
-    { Header: "Device Id", accessor: "deviceId" },
-    { Header: "Data", accessor: "data" },
-    { Header: "Measurement", accessor: "measurement" },
-    { Header: "Variable Name", accessor: "variableName" },
-    { Header: "Variable Unit", accessor: "variableUnit" },
-    { Header: "Sensor Time", accessor: "sensorTime" },
+    { Header: "column 1", accessor: "column1" },
+    { Header: "column 2", accessor: "column2" },
+    { Header: "column 3", accessor: "column3" },
+    { Header: "column 4", accessor: "column4" },
+    { Header: "column 5", accessor: "column5" },
+    { Header: "column 6", accessor: "column6" },
+    { Header: "column 7", accessor: "column7" },
+    { Header: "column 8", accessor: "column8" },
+    { Header: "column 9", accessor: "column9" },
+    { Header: "column 10", accessor: "column10" },
   ];
 
   return (
@@ -218,9 +254,8 @@ const Alarms = () => {
 
       {/* Main Content */}
       <main className="flex-grow">
-        <div className="  py-3 overflow-x-auto  w-full max-w-9xl mx-auto sm:px-6  lg:px-2 ">
+        {/* <div className="  py-3 overflow-x-auto  w-full max-w-9xl mx-auto sm:px-6  lg:px-2 ">
           <form onSubmit={handleSubmit} style={formStyle}>
-            {/* Dropdown Lists */}
 
             <div className="relative flex-grow">
               <label
@@ -408,7 +443,7 @@ const Alarms = () => {
               Submit
             </button>
           </form>
-        </div>
+        </div> */}
 
         {/* Monitoring Grid */}
         <div className="overflow-y-auto max-w-9xl  mx-auto">
@@ -416,7 +451,7 @@ const Alarms = () => {
             Alarm Data
           </h1>
           <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-4 mt-4  ">
-            <MonitoringGrid data={data} columns={columns} />
+            <MonitoringGrid data={tabelData} columns={columns} />
           </div>
         </div>
       </main>
