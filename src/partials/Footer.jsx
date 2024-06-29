@@ -28,7 +28,7 @@ const Footer = () => {
     <div className="fixed bottom-0 w-full flex justify-end items-center text-xs  bg-white dark:bg-black border-t z-10 border-gray-200 shadow-md">
       <p className="mx-1">Current Time: {currentTime}</p>
       <p className="mx-2">Language: English</p>
-      <img src={logoImg} alt="Logo" className="w-28" />
+      {/* <img src={logoImg} alt="Logo" className="w-28" /> */}
       {/* <div className="mx-2">
         <label className="form-check-label">
           <input

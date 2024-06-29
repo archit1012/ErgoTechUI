@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import Header from '../partials/Header';
-import DashboardCard04 from '../partials/dashboard/DashboardCard04';
-import DashboardCard12 from '../partials/dashboard/DashboardCard12';
-import DashboardCard10 from '../partials/dashboard/DashboardCard10';
-import DashboardChard1 from '../partials/dashboard/DashboardCard1';
-import DashboardMap from '../partials/dashboard/DashboardMap';
-import Dashboardcard05 from '../partials/dashboard/Dashoardcard05';
+import React, { useState } from "react";
+import Header from "../partials/Header";
+import DashboardCard04 from "../partials/dashboard/DashboardCard04";
+import DashboardCard12 from "../partials/dashboard/DashboardCard12";
+import DashboardCard10 from "../partials/dashboard/DashboardCard10";
+import DashboardChard1 from "../partials/dashboard/DashboardCard1";
+import DashboardMap from "../partials/dashboard/DashboardMap";
+import Dashboardcard05 from "../partials/dashboard/Dashoardcard05";
 
 function Dashboard() {
-  const [selectedAsset, setSelectedAsset] = useState('');
+  const [selectedAsset, setSelectedAsset] = useState("");
 
   const handleAssetChange = (event) => {
     setSelectedAsset(event.target.value);
@@ -23,12 +23,14 @@ function Dashboard() {
   };
 
   return (
-    <div className={`flex flex-col h-screen overflow-hidden bg-gray-100 dark:bg-gray-900`}>
+    <div
+      className={`flex flex-col h-screen overflow-hidden bg-gray-100 dark:bg-gray-900`}
+    >
       {/* Header */}
       <Header toggleDarkMode={toggleDarkMode} />
 
       {/* Asset Dropdown */}
-      <div className="p-4 header-small header-text"> {/* Reduced bottom margin from 4 to 2 */}
+      {/* <div className="p-4 header-small header-text">
         <div className="flex justify-start space-x-2 overflow-x-auto items-center">
           
           <div className="relative py-2 ">
@@ -51,7 +53,7 @@ function Dashboard() {
             </select>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Content area */}
       <div className="flex-1 overflow-y-auto">
@@ -59,15 +61,12 @@ function Dashboard() {
           {/* Cards */}
           <div className="grid grid-cols-12 gap-3">
             {/* Your Dashboard Cards */}
-            <Dashboardcard05 selectedAsset={selectedAsset} />
-            <DashboardCard12 selectedAsset={selectedAsset} />
+            {/* <Dashboardcard05 selectedAsset={selectedAsset} /> */}
+            {/* <DashboardCard12 selectedAsset={selectedAsset} /> */}
             <DashboardCard10 selectedAsset={selectedAsset} />
             <DashboardChard1 selectedAsset={selectedAsset} />
-            <DashboardMap selectedAsset={selectedAsset} />
-            <DashboardCard04 selectedAsset={selectedAsset} />
-            
-            
-
+            {/* <DashboardMap selectedAsset={selectedAsset} /> */}
+            {/* <DashboardCard04 selectedAsset={selectedAsset} /> */}
           </div>
         </main>
       </div>

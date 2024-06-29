@@ -6,8 +6,11 @@ import Notifications from "../components/DropdownNotifications";
 import Help from "../components/DropdownHelp";
 import UserMenu from "../components/DropdownProfile";
 import ThemeToggle from "../components/ThemeToggle";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowCircleRight, faArrowRotateRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowCircleRight,
+  faArrowRotateRight,
+} from "@fortawesome/free-solid-svg-icons";
 
 function Header({ sidebarOpen, setSidebarOpen }) {
   const [searchModalOpen, setSearchModalOpen] = useState(false);
@@ -49,8 +52,6 @@ function Header({ sidebarOpen, setSidebarOpen }) {
     { name: "15 min", value: 15 * 60 * 1000 },
     { name: "Disabled", value: "Disabled" },
   ];
-
-  
 
   return (
     <header
@@ -134,10 +135,9 @@ function Header({ sidebarOpen, setSidebarOpen }) {
                 setModalOpen={setSearchModalOpen}
               />
             </div>
-            {/* <Notifications align="right" />
-            <Help align="right" /> */}
+
             <ThemeToggle />
-            <div className="flex items-center">
+            {/* <div className="flex items-center">
               <label htmlFor="interval" className="mr-1 text-sm h-fit">
                 Refresh Every
               </label>
@@ -161,9 +161,9 @@ function Header({ sidebarOpen, setSidebarOpen }) {
               >
                 <FontAwesomeIcon icon={faArrowRotateRight} />
               </button>
-            </div>
-            <hr className="w-px h-6 bg-slate-200 dark:bg-slate-700 border-none" />
-            <UserMenu align="right" />
+            </div> */}
+            {/* <hr className="w-px h-6 bg-slate-200 dark:bg-slate-700 border-none" />
+            <UserMenu align="right" /> */}
           </div>
         </div>
       </div>
