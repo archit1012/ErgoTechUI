@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=fallback');
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+
+/* Additional styles */
+@import 'additional-styles/utility-patterns.css';
+
+
+@import 'tailwindcss/utilities';
+/* styles.css */
+
+.header-small {
+    font-size: 0.875rem; /* Smaller font size */
+    padding: 0.5rem 1rem; /* Reduced padding */
+  }
+  
+  .header-small .header-text {
+    font-size: 0.75rem; /* Even smaller font size for header text */
+  }
+  
+  .dropdown-small {
+    font-size: 0.875rem; /* Smaller font size for dropdowns */
+    padding: 0.25rem 0.5rem; /* Reduced padding */
+  }
+  
+  .button-small {
+    font-size: 0.875rem; /* Smaller font size for buttons */
+    padding: 0.25rem 0.5rem; /* Reduced padding */
+  }
+  /* Add this to your custom CSS file */
+.table-outline {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+}
+
+.table-outline th, .table-outline td {
+  border: 1px solid #ccc;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  color: white;
+  text-decoration: none;
+}
+
+.filter-container input {
+  margin-bottom: 10px;
+  padding: 5px;
+  font-size: 14px;
+  margin-right: 15px;
+}
+
+.dropdown-small {
+  margin-bottom: 10px;
+  padding: 5px;
+  font-size: 14px;
+}
+
+.header-small {
+  margin-bottom: 10px;
+  padding: 5px;
+  font-size: 14px;
+}
+
+.button-small {
+  margin-bottom: 10px;
+  padding: 5px;
+  font-size: 14px;
+}
+
+  
