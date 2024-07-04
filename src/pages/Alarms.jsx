@@ -135,7 +135,9 @@ const Alarms = () => {
   const fetchPieChartData = async () => {
     try {
       const res = await fetch(
-        "https://run.mocky.io/v3/d1b26ab3-c53d-470f-850d-46612159ef31"
+        // "https://run.mocky.io/v3/d1b26ab3-c53d-470f-850d-46612159ef31"
+        "http://127.0.0.1:5000/all_data"
+
       );
       if (res.ok) {
         console.log(res);
@@ -237,16 +239,16 @@ const Alarms = () => {
   // ];
 
   const columns = [
-    { Header: "column 1", accessor: "column1" },
-    { Header: "column 2", accessor: "column2" },
-    { Header: "column 3", accessor: "column3" },
-    { Header: "column 4", accessor: "column4" },
-    { Header: "column 5", accessor: "column5" },
-    { Header: "column 6", accessor: "column6" },
-    { Header: "column 7", accessor: "column7" },
-    { Header: "column 8", accessor: "column8" },
-    { Header: "column 9", accessor: "column9" },
-    { Header: "column 10", accessor: "column10" },
+    { Header: "id", accessor: "id" },
+    { Header: "filename", accessor: "filename" },
+    { Header: "worker_details_id", accessor: "worker_details_id" },
+    { Header: "max_strain_in_part", accessor: "max_strain_in_part" },
+    { Header: "cumulative_risk_score", accessor: "cumulative_risk_score" },
+    { Header: "ergonomic_risk_level", accessor: "ergonomic_risk_level" },
+    { Header: "leg_position", accessor: "leg_position" },
+    { Header: "arm_position", accessor: "arm_position" },
+    { Header: "neck_position", accessor: "neck_position" },
+    { Header: "back_position", accessor: "back_position" },
   ];
 
   return (
@@ -450,7 +452,7 @@ const Alarms = () => {
         {/* Monitoring Grid */}
         <div className="overflow-y-auto max-w-9xl  mx-auto">
           <h1 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">
-            Alarm Data
+            Image Data
           </h1>
           <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-4 mt-4  ">
             {tabelData.length > 0 && (

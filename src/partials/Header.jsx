@@ -111,7 +111,7 @@ function Header({ sidebarOpen, setSidebarOpen }) {
                   : linkStyle
               }
             >
-              Alarms
+              Image Analysis
             </Link>
             {/* <Link
               to="/analysis"

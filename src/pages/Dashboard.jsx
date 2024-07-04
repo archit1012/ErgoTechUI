@@ -17,9 +17,11 @@ function Dashboard() {
   const fetchPieChartData = async () => {
     try {
       const res = await fetch(
-        "https://run.mocky.io/v3/a134f99c-0b69-4739-b3ff-4ea8931e66aa"
+        "http://localhost:5000/table"
       );
+      // "https://run.mocky.io/v3/a134f99c-0b69-4739-b3ff-4ea8931e66aa"
       if (res.ok) {
+        console.log("resoinse ********* ");
         console.log(res);
         const data = await res.json();
         console.log("first");
